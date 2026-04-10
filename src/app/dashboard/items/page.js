@@ -35,9 +35,6 @@ export default function AdminItemsPage() {
 
   useEffect(() => { load(); }, []);
 
-  if (authLoading) return (
-    <div className="centerNotice" style={{paddingTop:80}}>Loading...</div>
-  );
 
   async function load() {
     setLoaded(false);
