@@ -1,0 +1,3835 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────── */
+:root {
+  --font-body: var(--font-geist-sans), "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --text-black: #0f172a;
+  --text-white: #ffffff;
+  --text-muted: #64748b;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+
+  --primary: #00043A;
+  --primary-hover: #1e293b;
+  --accent: #000000;
+  --danger: #dc2626;
+  --danger-hover: #b91c1c;
+  --success: #16a34a;
+  --warning: #d97706;
+  --header: #00043A;
+
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--font-body);
+  background: var(--bg);
+  font-size: 14px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Layout ─────────────────────────────────────────── */
+.container {
+  width: min(1140px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.top-margin{
+  margin-top: 30px;
+}
+
+.searchResultLabel{
+  padding-bottom: 10px;
+}
+
+/* ─── Header / Nav ───────────────────────────────────── */
+.appHeader {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--header);
+  color: #fff;
+  width: 100%;
+}
+
+.navRow {
+  width: min(1140px, 100%);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+}
+
+.navBrand {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin-right: 16px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.navLink {
+  color: var(--text-white);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.navLink:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navLinkActive {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.navPipe {
+  display: none;
+}
+
+.navSpacer {
+  flex: 1;
+}
+
+/* Search bar in header */
+.headerSearch {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 12px 0 4px;
+  position: relative;
+}
+
+.headerSearch input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.headerSearch input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.headerSearch input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ─── Page Structure ─────────────────────────────────── */
+.pageHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 24px 0 20px;
+}
+
+.pageTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pageSubtitle {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ─── Sidebar Layout (Account pages) ─────────────────── */
+.accountLayout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 52px);
+  background: var(--bg);
+}
+
+.accountSidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: 24px 0;
+  position: sticky;
+  top: 52px;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+}
+
+.sidebarUser {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.sidebarAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  object-fit: cover;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.sidebarName {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+}
+
+.sidebarEmail {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin: 2px 0 0;
+}
+
+.sidebarNav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebarNavItem a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+
+.sidebarNavItem a:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.sidebarNavItem.active a {
+  color: var(--text);
+  background: var(--surface-muted);
+  border-left-color: #000;
+}
+
+.accountContent {
+  padding: 28px 32px;
+  max-width: 900px;
+}
+
+/* ─── Cards & Grids ──────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.itemCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  height: 100%;
+}
+
+.itemCard:hover {
+  box-shadow: 0 4px 12px rgba(199, 9, 9, 0.2);
+  ;
+  transform: translateY(-2px);
+}
+
+.itemCardImg {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  background: #f1f5f9;
+  display: block;
+}
+
+.itemCardImgPlaceholder {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.itemCardBody {
+  padding: 14px;
+}
+
+.itemCardPrice {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.itemCardName {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+.itemCardMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ─── Tabs ───────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: color 0.15s;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tabActive {
+  color: var(--text);
+  border-bottom-color: #000;
+}
+
+.tabBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 6px;
+}
+
+/* ─── Category Filter Pills ──────────────────────────── */
+.filterPills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.pill {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--line);
+  background: rgba(0, 41, 98, 0.407);
+  color: rgba(255, 255, 255, 0.766);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pill:hover {
+  border-color: var(--line-strong);
+  color: var(--text-white);
+}
+
+.pillActive {
+  background: #00043A;
+  color: #fff;
+  border-color: #000;
+}
+
+/* ─── Status Badges ──────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badgeGreen {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badgeRed {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badgeBlue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badgeGray {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.badgeOrange {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+/* ─── Rental Card (My Rentals) ───────────────────────── */
+.rentalCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.rentalThumb {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  background: #f1f5f9;
+  flex-shrink: 0;
+}
+
+.rentalThumbPlaceholder {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius);
+  background: #f1f5f9;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.rentalInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.rentalTitle {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.rentalMeta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 2px;
+}
+
+.rentalActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ─── Detail / Item Page ─────────────────────────────── */
+.detailLayout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.detailGallery {
+  position: sticky;
+  top: 60px;
+}
+
+.detailMainImg {
+  width: 100%;
+  aspect-ratio: 3/4;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: #f1f5f9;
+  display: block;
+}
+
+.detailMainImgPlaceholder {
+  width: 100%;
+  height: 260px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.detailThumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.detailThumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+.detailPanel {}
+
+.detailCategory {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 6px;
+}
+
+.detailTitle {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.detailCondition {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.specTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specTable td {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.specTable td:first-child {
+  color: var(--text-muted);
+  width: 40%;
+}
+
+.specTable td:last-child {
+  font-weight: 600;
+}
+
+.detailSection {
+  margin: 16px 0 0;
+}
+
+.detailSectionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.priceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.priceBox {
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+
+.priceBoxLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+
+.priceBoxValue {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.sellerCard {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--surface-muted);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.sellerAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.sellerName {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0;
+}
+
+.sellerRating {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+}
+
+.stars {
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+/* ─── Rent Form / Receipt ────────────────────────────── */
+.rentFormCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.rentFormHeader {
+  background: #002962;
+  color: #fff;
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.rentFormBody {
+  padding: 20px;
+}
+
+.rentFormSection {
+  margin-bottom: 20px;
+}
+
+.rentFormSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  color: var(--text-muted);
+}
+
+.costRowTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 10px 0 0;
+  border-top: 2px solid #000;
+  margin-top: 6px;
+  color: var(--text);
+}
+
+/* Receipt */
+.receiptCard {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.receiptHeader {
+  padding: 20px 24px 16px;
+  border-bottom: 2px solid #000;
+}
+
+.receiptTitle {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.receiptSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.receiptBody {
+  padding: 20px 24px;
+}
+
+.receiptRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 4px 12px;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.receiptLabel {
+  color: var(--text-muted);
+}
+
+.receiptVal {
+  font-weight: 600;
+}
+
+.receiptSection {
+  margin-bottom: 16px;
+}
+
+.receiptSectionTitle {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+  padding: 12px 0 6px;
+  border-top: 1px solid var(--line);
+}
+
+/* ─── Admin ──────────────────────────────────────────── */
+.adminLayout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 52px);
+}
+
+.adminSidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: 0;
+}
+
+.adminSidebarTitle {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  padding: 20px 20px 8px;
+}
+
+.adminNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.adminNavItem a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+}
+
+.adminNavItem a:hover {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.adminNavItem.active a {
+  color: var(--text);
+  background: var(--surface-muted);
+  border-left-color: #000;
+}
+
+.adminContent {
+  padding: 28px 32px;
+}
+
+.statCard {
+  background: #000;
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+}
+
+.statCardDanger {
+  background: #dc2626;
+}
+
+.statLabel {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.statValue {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* ─── Table ──────────────────────────────────────────── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--line);
+  background: var(--surface-muted);
+}
+
+.table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #fafafa;
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  background: #004E89;
+  color: #fff;
+
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: #002962;
+  color: white;
+}
+
+.btnGhost {
+  background: #A0001C;
+  color: var(--text-white);
+
+}
+
+.btnGhost:hover:not(:disabled) {
+  background: #800016;
+}
+
+.btnDanger {
+  background: var(--danger);
+  color: #fff;
+
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: var(--danger-hover);
+}
+
+.btnSm {
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+.btnLg {
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+/* ─── Forms ──────────────────────────────────────────── */
+.formCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+input[type="file"] {
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.readonlyField {
+  background: var(--surface-muted);
+  color: var(--text-muted);
+}
+
+/* ─── Misc ───────────────────────────────────────────── */
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 16px 0;
+}
+
+.centerNotice {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.messageText {
+  margin-top: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.errorText {
+  color: var(--danger);
+}
+
+.successText {
+  color: var(--success);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ─── Location Card ──────────────────────────────────── */
+.locationCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.locationCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ─── Profile ────────────────────────────────────────── */
+.profilePhoto {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  object-fit: cover;
+  background: #f8fafc;
+  display: block;
+}
+
+.profilePhotoPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 800;
+  color: #334155;
+  background: #e2e8f0;
+}
+
+.profileShell {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 240px minmax(0, 1fr);
+  align-items: start;
+}
+
+.profileCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  text-align: center;
+}
+
+.profileName {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 12px 0 0;
+}
+
+.profileEmail {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 4px 0 0;
+}
+
+/* ─── Messages ───────────────────────────────────────── */
+.chatList {
+  display: grid;
+  gap: 8px;
+}
+
+.chatRow {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.chatRow:hover {
+  border-color: var(--line-strong);
+}
+
+.chatRowActive {
+  border-color: #000;
+}
+
+.chatTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatName {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.chatPreview {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.threadCard {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 60dvh;
+}
+
+.threadMessages {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-muted);
+  padding: 12px;
+  min-height: 280px;
+  max-height: 50dvh;
+  overflow: auto;
+}
+
+.bubbleWrap {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.bubbleWrapMine {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 76%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+  font-size: 14px;
+}
+
+.bubbleOther {
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.bubbleMine {
+  background: #000;
+  color: #fff;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.composer input {
+  margin: 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .detailLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .detailGallery {
+    position: static;
+  }
+
+  .accountLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .accountSidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .adminLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .pageHead {
+    flex-direction: column;
+  }
+
+  .profileShell {
+    grid-template-columns: 1fr;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .navRow {
+    padding: 0 8px;
+  }
+
+  .navLink {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* ─── Refactored: formerly inline styles ─────────────── */
+
+/* Nav */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.navLinkAdmin {
+  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+}
+
+.navLinkAccount {
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 7px;
+  padding: 4px 14px;
+  color: #fff;
+}
+
+.navLinkLogin {
+  margin-left: 8px;
+  background: #fff;
+  color: #000;
+  border-radius: 7px;
+  padding: 5px 16px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.navLinkLogout {
+  margin-left: 8px;
+  background: #A0001C;
+  color: #000;
+  border-radius: 7px;
+  padding: 5px 16px;
+  font-weight: 500;
+  font-size: 13px;
+  color: white;
+}
+.navLinkLogout:hover{
+  background: #800016;
+}
+
+/* ItemCard */
+.itemCardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.itemCardImg {
+  aspect-ratio: 16/10;
+  object-fit: cover;
+}
+
+.itemCardImgPlaceholder {
+  aspect-ratio: 16/10;
+}
+
+.itemCardPriceUnit {
+  font-weight: 400;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.itemCardAction {
+  margin-top: 6px;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Page containers */
+.containerPt24 {
+  padding-top: 24px;
+}
+
+.containerPt32 {
+  padding-top: 32px;
+}
+
+.containerPt48 {
+  padding-top: 48px;
+}
+
+/* Back links */
+.backLink {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Detail layout spacing */
+.detailLayoutSpaced {
+  margin-top: 20px;
+}
+
+.detailGallerySticky {
+  position: sticky;
+  top: 80px;
+}
+
+.detailNoImg {
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.fieldMt {
+  margin-top: 12px;
+}
+
+.detailMeta {
+  margin-bottom: 16px;
+}
+
+.detailCategory {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.detailTitleInput {
+  font-size: 24px;
+  font-weight: 800;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.detailH1 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.detailBadgeRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.detailQtyLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.specsTd {
+  padding: 4px 12px 4px 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.specsTdVal {
+  padding: 4px 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.locationName {
+  margin: 0;
+  font-size: 14px;
+}
+
+.locationBuilding {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.sellerInfo {
+  flex: 1;
+}
+
+.btnFlexShrink0 {
+  flex-shrink: 0;
+}
+
+.pricingEditGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.detailDescText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.detailDescTextarea {
+  width: 100%;
+  font-size: 14px;
+}
+
+.actionsMt {
+  margin-top: 20px;
+}
+
+.actionsMt8 {
+  margin-top: 8px;
+}
+
+.rentBtnFull {
+  flex: 1;
+  justify-content: center;
+}
+
+.rentBtnUnavailable {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Rent page */
+.rentPageGrid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 24px;
+  margin-top: 20px;
+  align-items: start;
+}
+
+.rentItemImg {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.rentItemNoImg {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #f1f5f9;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+}
+
+.rentItemSummary {
+  margin-bottom: 20px;
+}
+
+.rentItemName {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.rentRequiredNote {
+  font-size: 12px;
+  color: var(--danger);
+  margin: 0 0 14px;
+}
+
+.rentDateGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.rentTypeRow {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.rentTypeLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.rentTypeRadio {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.rentLocationWarning {
+  color: var(--warning);
+  margin-top: 4px;
+}
+
+.rentNoCardWarning {
+  color: var(--danger);
+}
+
+.rentCardLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.rentCardLabelSelected {
+  border: 1px solid var(--primary, #000);
+}
+
+.rentCardLabelUnselected {
+  border: 1px solid var(--line, #e2e8f0);
+}
+
+.rentCardRadio {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.rentCardExpiry {
+  color: var(--text-muted);
+  margin-left: 8px;
+}
+
+.rentManageLink {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.rentSubmitBtn {
+  width: 100%;
+}
+
+.rentLoginNote {
+  color: var(--danger);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Login page */
+.loginWrapper {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.loginLogoWrap {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.loginLogo {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.loginHeading {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.loginSubmitBtn {
+  width: 100%;
+  margin-top: 4px;
+  background: #002962;
+
+}
+
+.loginToggleWrap {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.loginToggleBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Receipt / rental status */
+.receiptPageCenter {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.receiptStatusIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+}
+
+.receiptStatusIconPending {
+  background: #f59e0b;
+}
+
+.receiptStatusIconDenied {
+  background: #ef4444;
+}
+
+.receiptStatusIconConfirmed {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 12px;
+}
+
+.receiptStatusH1 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.receiptStatusSub {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.receiptDetailsBox {
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.receiptDetailsTitle {
+  margin: 0 0 6px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.receiptDetailsMeta {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.receiptDetailsMetaLast {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.receiptPolling {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.receiptPollingDot {
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+
+.receiptActionsCenter {
+  justify-content: center;
+}
+
+.receiptConfirmBanner {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.receiptConfirmH1 {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.receiptConfirmSub {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.receiptTypeVal {
+  text-transform: capitalize;
+}
+
+.receiptCostRow {
+  padding: 4px 0;
+}
+
+.receiptPaymentLabel {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.receiptImportantBox {
+  background: var(--surface-muted);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.receiptImportantTitle {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.receiptImportantList {
+  margin: 0;
+  padding: 0 0 0 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.receiptActionsMt {
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Locations */
+.locationsGrid {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.locationCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.locationIcon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.locationCardH2 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.locationHours {
+  margin-top: 8px;
+}
+
+.locationBrowseWrap {
+  margin-top: 16px;
+}
+
+.locationFilterRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.locationCondSelect {
+  width: auto;
+  padding: 6px 10px;
+}
+
+.locationMaxInput {
+  width: 160px;
+  padding: 6px 10px;
+}
+
+.pageHeadMt {
+  margin-top: 12px;
+}
+
+/* Rate page */
+.rateWrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.rateH1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.rateLabel {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.rateLabelReview {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.rateSelect {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.rateTextarea {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.rateSubmitBtn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-weight: 700;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.rateMessage {
+  margin-top: 12px;
+}
+
+.rateMessageSuccess {
+  color: green;
+}
+
+.rateMessageError {
+  color: red;
+}
+
+/* Messages */
+.threadHeaderName {
+  margin: 0;
+}
+
+.threadHeaderSub {
+  margin-top: 4px;
+}
+
+.threadActionsRow {
+  margin-top: 0;
+}
+
+.chatUserNotFound {
+  margin-bottom: 12px;
+}
+
+.chatStartLabel {
+  margin-top: 8px;
+}
+
+/* Profile / Account sidebar */
+.sidebarAvatarImg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebarRentalsSection {
+  padding: 16px 20px 0;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+}
+
+.sidebarRentalsTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.sidebarRentalLink {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sidebarRentalId {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sidebarRentalDue {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Profile main */
+.profilePageTitle {
+  margin-bottom: 24px;
+}
+
+.profileShellNarrow {
+  grid-template-columns: 180px 1fr;
+}
+
+.profileFormTitle {
+  margin: 0 0 20px;
+  font-size: 16px;
+}
+
+.profileFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Shared account sidebar slim */
+.sidebarUserSlim {
+  padding: 20px 20px 16px;
+}
+
+/* Payment methods */
+.paymentAddBtnMt {
+  margin-top: 20px;
+}
+
+.paymentFormMt {
+  margin-top: 20px;
+}
+
+.paymentCancelBtn {
+  margin-left: 10px;
+}
+
+.paymentCardsGridMt {
+  margin-top: 30px;
+}
+
+.paymentCardActionsMt {
+  margin-top: 10px;
+}
+
+/* My Rentals */
+.myRentalsTitle {
+  margin-bottom: 20px;
+}
+
+.rentalCardHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.rentalOverdueWarning {
+  font-size: 13px;
+  color: var(--danger);
+  font-weight: 600;
+  margin: 4px 0 0;
+}
+
+/* My Items */
+.requestsSubTabRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.requestsEmptyMt {
+  margin-top: 32px;
+}
+
+.requestsEmptyTitle {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.requestsEmptySubtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.requestsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.requestCard {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  background: var(--surface);
+}
+
+.requestCardRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.requestCardInfo {
+  flex: 1;
+}
+
+.requestCardName {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.requestCardMeta {
+  margin: 0 0 2px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.requestCardTotal {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.requestCardActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.requestCardBtn {
+  min-width: 110px;
+}
+
+.requestTypeCapitalize {
+  text-transform: capitalize;
+}
+
+.tabBadgeRed {
+  background: #ef4444;
+}
+
+/* Items new */
+.newItemFormTitle {
+  margin: 16px 0 8px;
+}
+
+.newItemPriceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.newItemActionsMt {
+  margin-top: 16px;
+}
+
+/* Admin */
+.adminSidebarHeader {
+  background: #000;
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adminSidebarBrand {
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+}
+
+.adminSidebarTag {
+  font-size: 11px;
+  opacity: 0.6;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.adminPageH1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.adminPageH1Mb {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 24px;
+}
+
+.adminStatusFilterRow {
+  display: flex;
+  gap: 6px;
+}
+
+.adminTableCard {
+  padding: 0;
+  overflow: hidden;
+}
+
+.adminTableEmpty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px;
+}
+
+.adminTableEmptyInline {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.adminTdBold {
+  font-weight: 600;
+}
+
+.adminTdMuted {
+  color: var(--text-muted);
+}
+
+.adminTdCapitalize {
+  text-transform: capitalize;
+}
+
+.adminTrOverdue {
+  background: #fff5f5;
+}
+
+.adminTrBanned {
+  background: #fff5f5;
+}
+
+.adminCardFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.adminCardLocName {
+  margin: 0 0 2px;
+  font-weight: 700;
+}
+
+.adminActivityHeader {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.adminActivityH2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.adminRentalLink {
+  font-weight: 600;
+}
+
+.adminAlertsBox {
+  margin-top: 16px;
+  background: #374151;
+  color: #fff;
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 13px;
+}
+
+.adminAlertsTitle {
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.adminAlertsList {
+  margin: 0;
+  padding: 0 0 0 16px;
+  line-height: 1.9;
+}
+
+.adminLocationsFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.adminLocFormMb {
+  margin-bottom: 24px;
+}
+
+.adminLocFormH2 {
+  margin: 0 0 16px;
+  font-size: 15px;
+}
+
+/* Hero (home page) */
+.hero {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin: 24px 0 32px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to right, var(--primary), #6c63ff);
+}
+
+.heroEyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 10px;
+}
+
+.heroH1 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  margin: 0 0 12px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-white);
+}
+
+.heroSubtitle {
+  opacity: 0.7;
+  font-size: 15px;
+  margin: 0 0 24px;
+  max-width: 480px;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 10px;
+}
+
+.heroBtnLocations {
+  background: #FFFFFF;
+  color: var(--text-black);
+}
+
+.heroBtnList {
+  color: #fff;
+  background: #A0001C;
+
+}
+
+
+/* Admin Items Page */
+.adminItemsFilterRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.adminItemsSearch {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border, #e0e0e0);
+  border-radius: 7px;
+  font-size: 14px;
+  outline: none;
+  width: 300px;
+  height: 36px;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.adminItemsSearch:focus {
+  border-color: var(--primary, #A0001C);
+}
+
+.adminItemsSelect {
+  padding: 0 10px;
+  height: 36px;
+  border: 1.5px solid var(--border, #e0e0e0);
+  border-radius: 7px;
+  font-size: 14px;
+  outline: none;
+  background: var(--surface, #fff);
+  color: var(--text, #111);
+  cursor: pointer;
+  width: auto;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.adminItemsSelect:focus {
+  border-color: var(--primary, #A0001C);
+}
+
+.adminItemsClearBtn {
+  height: 36px;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.adminItemsCount {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.adminItemThumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.adminItemNameCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adminItemActions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.adminBtnDanger {
+  color: #dc2626;
+  border: 1.5px solid #dc2626;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 5px 10px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.adminBtnDanger:hover {
+  background: #dc2626;
+  color: #fff;
+}
+
+/* Larger modal for the item form */
+.modalBoxLg {
+  max-width: 700px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.adminItemFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+.adminItemFormFull {
+  grid-column: 1 / -1;
+}
+
+.modalTextarea {
+  resize: vertical;
+  min-height: 72px;
+  font-family: inherit;
+}
+
+/* Edit form layout */
+.adminEditItemForm {
+  padding: 20px 24px;
+}
+
+.adminEditItemHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.adminEditItemName {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminEditSectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 14px 0 8px;
+}
+
+.adminEditGrid {
+  display: grid;
+  gap: 0 16px;
+}
+
+.adminEditGridFull {
+  grid-template-columns: 1fr;
+}
+
+.adminEditGrid2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.adminEditGrid4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.adminEditSelect {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+.adminEditSelect:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.adminEditActions {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+/* Admin Return  */
+.returnModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.returnModalBox {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+}
+
+.returnModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.returnModalTitle {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0 0 2px;
+}
+
+.returnModalSub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.returnModalClose {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0;
+  line-height: 1;
+}
+
+.returnModalClose:hover {
+  color: var(--text);
+}
+
+.returnSection {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.returnSectionTitle {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.returnSectionDesc {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+
+.returnConditionRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.returnConditionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: var(--radius);
+  border: 2px solid var(--line);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.returnConditionBtn:hover {
+  border-color: var(--line-strong);
+}
+
+.returnConditionBtnIdle {
+  color: var(--text);
+}
+
+.returnConditionBtnGood {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.returnConditionBtnBad {
+  border-color: #dc2626;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.returnConditionSub {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.returnFieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.returnInput {
+  width: 160px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 14px;
+}
+
+.returnInput:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.returnLateWarning {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.returnSummary {
+  padding: 16px 24px;
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--line);
+}
+
+.returnSummaryTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+
+.returnSummaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 4px 0;
+  color: var(--text);
+}
+
+.returnSummaryGreen { color: #15803d; font-weight: 600; }
+.returnSummaryRed   { color: #dc2626; font-weight: 600; }
+
+.returnSummaryTotal {
+  font-weight: 700;
+  font-size: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.returnModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+}
+
+/* ─── Footer ───────────────────────────────────────── */
+
+.appFooter {
+  margin-top: 40px;
+}
+
+/* Top (light section) */
+.footerTop {
+  background: #e5e7eb; /* light gray like screenshot */
+  padding: 32px 20px;
+}
+
+.footerRow {
+  width: min(1140px, 100%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 140px;
+}
+
+.footerHeading {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #111827;
+}
+
+.footerLink {
+  font-size: 13px;
+  color: #4b5563;
+  transition: color 0.15s;
+}
+
+.footerLink:hover {
+  color: var(--primary);
+}
+
+/* Bottom (black bar) */
+.footerCol button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #4b5563; /* same as footerLink color */
+  cursor: pointer; /* pointer cursor on hover */
+  text-align: left;
+  transition: color 0.15s;
+}
+
+.footerCol button:hover {
+  color: var(--primary);
+}
+
+/* Bottom (black bar) */
+.footerBottom {
+  background: var(--primary);
+  padding: 16px 10px;
+  text-align: center;
+}
+
+.footerBrand {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #fff;
+  margin: 0;
+}
+/* ─── Skeleton Loading Cards ─────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeletonCard {
+  pointer-events: none;
+  cursor: default;
+}
+
+.skeletonImg {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: linear-gradient(90deg, var(--surface-muted) 25%, #e8edf2 50%, var(--surface-muted) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeletonLine {
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--surface-muted) 25%, #e8edf2 50%, var(--surface-muted) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+  margin-bottom: 8px;
+}
+.skeletonPrice { height: 14px; width: 60px; }
+.skeletonName  { height: 16px; width: 90%; }
+.skeletonMeta  { height: 12px; width: 50%; }
+
+/* ─── Next/Image wrapper on ItemCard ─────────────────────── */
+.itemCardImgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: var(--radius) var(--radius) 0 0;
+  background: var(--surface-muted);
+}
+
+/* ─── Toast Notifications ────────────────────────────────── */
+.toastContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 340px;
+  width: calc(100vw - 48px);
+}
+
+.toastItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  font-size: 13px;
+  border-left: 4px solid var(--line-strong);
+  animation: toastIn 0.2s ease;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toastItem--success { border-left-color: var(--success); }
+.toastItem--error   { border-left-color: var(--danger); }
+.toastItem--info    { border-left-color: var(--primary); }
+
+.toastIcon {
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.toastItem--success .toastIcon { color: var(--success); }
+.toastItem--error   .toastIcon { color: var(--danger); }
+.toastItem--info    .toastIcon { color: var(--primary); }
+
+.toastMsg { flex: 1; color: var(--text-black); line-height: 1.4; }
+
+.toastDismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 18px;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.toastDismiss:hover { color: var(--text-black); }
+
+/* ─── Realtime Badge (Messages) ──────────────────────────── */
+.realtimeBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--success);
+  letter-spacing: 0.04em;
+  align-self: center;
+}
+
+/* ─── Optimistic message bubble (slightly muted) ─────────── */
+.bubbleOptimistic {
+  opacity: 0.7;
+}
+
+/* ─── Browse page inline search bar ─────────────────────── */
+.browseSearchRow {
+  margin-bottom: 16px;
+}
+.browseSearchInput {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ─── 404 Not Found page ─────────────────────────────────── */
+.notFoundWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px;
+  gap: 12px;
+}
+.notFoundCode {
+  font-size: 96px;
+  font-weight: 900;
+  color: var(--line-strong);
+  line-height: 1;
+  margin: 0;
+}
+.notFoundTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-black);
+  margin: 0;
+}
+.notFoundSub {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0;
+}
+.notFoundActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ─── Admin Login Page ───────────────────────────────────── */
+.adminLoginPage {
+  min-height: 100vh;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.adminLoginCard {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.adminLoginHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.adminLoginBrand {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+
+.adminLoginBadge {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--primary);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.adminLoginSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.adminLoginStudentLink {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.adminLoginError {
+  background: #fef2f2;
+  border: 1.5px solid var(--danger);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #b91c1c;
+  margin-bottom: 16px;
+}
+
+.adminLoginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.adminLoginBtn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.adminLoginFootnote {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ─── Admin nav link: portal entry ────────────────────────── */
+.navLinkAdminPortal {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.navLinkAdminPortal:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+/* ─── Admin users page: flagged row ───────────────────────── */
+.adminTrFlagged {
+  background: #fffbeb !important;
+}
+
+.adminFlagBadge {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--warning);
+  font-size: 13px;
+}
+
+.adminBanReason {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+  font-style: italic;
+}
+
+/* ─── Admin page head row ─────────────────────────────────── */
+.adminPageHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.adminPageMeta {
+  display: flex;
+  gap: 8px;
+}
+
+/* ─── Admin filter row ────────────────────────────────────── */
+.adminFilterRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.adminSearchInput {
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+/* ─── Admin info box (policy callout) ─────────────────────── */
+.adminInfoBox {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-top: 20px;
+}
+
+.adminInfoTitle {
+  font-weight: 700;
+  font-size: 13px;
+  color: #1e40af;
+  margin: 0 0 4px;
+}
+
+.adminInfoText {
+  font-size: 13px;
+  color: #1e3a8a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Modal overlay (ban confirmation) ────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.modalCard {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-black);
+}
+
+.modalSub {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Star rating picker (rate page) ─────────────────────── */
+.rateStarRow {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0 4px;
+}
+
+.rateStar {
+  background: none;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: transform 0.1s;
+}
+.rateStar:hover { transform: scale(1.15); }
+.rateStarFilled { color: #f59e0b; }
+.rateStarEmpty  { color: var(--line-strong); }
+
+.rateStarLabel {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.rateLowWarning {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #b91c1c;
+  line-height: 1.5;
+}
+
+.rateCharCount {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin: 2px 0 0;
+}
+
+.rateForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.rateWrapper {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 0 16px;
+}
+
+.rateH1 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+
+.rateSubtitle {
+  color: var(--text-muted);
+  margin: 0 0 8px;
+}
+
+.rateMt { margin-top: 16px; }
+
+.rateOptional {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.rateSubmitBtn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.rateSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 40px 0;
+}
+
+.rateSuccessIcon {
+  font-size: 64px;
+  color: #f59e0b;
+  line-height: 1;
+}
+
+.rateActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.rateAutoBanNotice {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #b91c1c;
+  max-width: 360px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RATE PAGE — Interactive star rating
+   ═══════════════════════════════════════════════════════════ */
+
+.rateWrapper {
+  max-width: 540px;
+  margin: 48px auto;
+  padding: 0 16px 80px;
+}
+
+.rateCard {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  box-shadow: var(--shadow);
+}
+
+.rateH1 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: var(--text-black);
+}
+
+.rateSubtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* ── The star row itself ─────────────────────────────────── */
+.rateStarSection {
+  margin-bottom: 20px;
+}
+
+.rateStarRow {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.rateStar {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 48px;         /* big, tappable stars */
+  line-height: 1;
+  transition: transform 0.12s ease, color 0.1s ease;
+  -webkit-text-stroke: 2px #d4a017;  /* outline on empty */
+  user-select: none;
+}
+
+.rateStar:hover {
+  transform: scale(1.18);
+}
+
+/* Filled star */
+.rateStarOn {
+  color: #f59e0b;
+  -webkit-text-stroke: 2px #d97706;
+  filter: drop-shadow(0 0 4px rgba(245,158,11,0.4));
+}
+
+/* Empty star */
+.rateStarOff {
+  color: transparent;
+  -webkit-text-stroke: 2px #d4a017;
+}
+
+/* ── Label + dot indicators under stars ─────────────────── */
+.rateLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 22px;
+}
+
+.rateActiveLabel {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+
+.rateActiveDots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.rateDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background 0.15s;
+}
+
+.rateDotOn {
+  /* color set inline from LABEL_COLORS */
+}
+
+/* ── Read-only static stars (done/already-rated states) ─── */
+.rateStarRowStatic {
+  display: flex;
+  gap: 4px;
+  margin: 8px 0 4px;
+}
+
+.rateStaticStar {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.rateStaticStarFilled {
+  color: #f59e0b;
+  -webkit-text-stroke: 2px #d97706;
+}
+
+.rateStaticStarEmpty {
+  color: transparent;
+  -webkit-text-stroke: 2px #d4a017;
+}
+
+/* ── Low-rating warning ──────────────────────────────────── */
+.rateLowWarning {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #b91c1c;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+/* ── Review textarea extras ──────────────────────────────── */
+.rateMt { margin-top: 16px; }
+
+.rateOptional {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.rateCharCount {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  margin: 3px 0 0;
+}
+
+/* ── Submit button ───────────────────────────────────────── */
+.rateForm { display: flex; flex-direction: column; }
+
+.rateSubmitBtn {
+  width: 100%;
+  margin-top: 20px;
+  transition: opacity 0.15s;
+}
+
+.rateSubmitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Success / already-rated screen ─────────────────────── */
+.rateSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 60px 24px;
+}
+
+.rateSuccessBigStar {
+  font-size: 72px;
+  line-height: 1;
+  color: #f59e0b;
+  -webkit-text-stroke: 3px #d97706;
+  filter: drop-shadow(0 0 12px rgba(245,158,11,0.35));
+}
+
+.rateExistingReview {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 340px;
+  margin: 0;
+  border-left: 3px solid var(--line-strong);
+  padding-left: 12px;
+  text-align: left;
+}
+
+.rateActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rateAutoBanNotice {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #b91c1c;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ADMIN DASHBOARD SHELL
+   ═══════════════════════════════════════════════════════════ */
+
+/* Full-viewport shell: sidebar left, main right */
+.dashboardShell {
+  display: flex;
+  min-height: 100vh;
+  background: #f1f5f9;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────── */
+.adminSidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--primary);        /* dark navy */
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.adminSidebarHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.adminSidebarBrand {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+
+.adminSidebarTag {
+  font-size: 9px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.8);
+  padding: 2px 6px;
+  border-radius: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.adminNav {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  flex: 1;
+}
+
+.adminNavItem a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 0;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+.adminNavItem a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.adminNavItem.active a {
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+  font-weight: 700;
+  border-left: 3px solid #fff;
+  padding-left: 13px;
+}
+
+.adminNavIcon {
+  font-size: 14px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.adminSidebarFooter {
+  padding: 12px 16px 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.adminSidebarStudentLink {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  display: block;
+}
+.adminSidebarStudentLink:hover { color: rgba(255,255,255,0.7); }
+
+/* ── Right panel (topbar + content) ─────────────────────── */
+.adminMain {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ── Top bar ─────────────────────────────────────────────── */
+.adminTopbar {
+  height: 52px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  flex-shrink: 0;
+}
+
+/* Breadcrumb */
+.adminTopbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.adminTopbarSection {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.adminTopbarSep {
+  color: var(--line-strong);
+}
+
+.adminTopbarPage {
+  color: var(--text-black);
+  font-weight: 700;
+}
+
+/* User block */
+.adminTopbarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminTopbarUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Avatar circle with initials */
+.adminAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.adminTopbarUserInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.adminTopbarName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-black);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminTopbarRole {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Sign-out icon button */
+.adminTopbarLogout {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 15px;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+.adminTopbarLogout:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: var(--danger);
+}
+
+/* ── Content area ────────────────────────────────────────── */
+.adminContent {
+  flex: 1;
+  padding: 28px 32px 48px;
+}
+
+/* ─── Unread message badge (nav) ─────────────────────────── */
+.navMsgWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.navUnreadBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 99px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+  /* Subtle pulse so it catches the eye */
+  animation: badgePop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Unread dot on conversation row ─────────────────────── */
+.chatRowUnread {
+  background: #fefce8;        /* very light yellow tint */
+}
+
+.chatTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chatUnreadDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ef4444;
+  flex-shrink: 0;
+  animation: badgePop 0.2s ease;
+}
+
+.chatPreviewUnread {
+  font-weight: 600;
+  color: var(--text-black);
+}
