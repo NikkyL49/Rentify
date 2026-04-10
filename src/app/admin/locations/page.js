@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { AdminLayout } from "../page.js";
+import { AdminLayout } from "@/components/AdminLayout";
 import { supabase } from "@/lib/supabaseClient";
 
 const EMPTY = { id: "", name: "", building: "", street: "", city: "Edmonton", province: "AB", postal_code: "", contact_email: "", contact_phone: "", hours: "Mon-Fri 9AM-5PM", status: "active" };
