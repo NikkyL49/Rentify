@@ -4,10 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        // Supabase storage — covers all project subdomains
+        // Supabase storage
         protocol: "https",
         hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
+      },
+      {
+        // Unsplash (for demo/seed images)
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
     ],
   },
