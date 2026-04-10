@@ -11,7 +11,7 @@ const AUTO_BAN_ONE_STAR_THRESHOLD = 5;
 const AUTO_BAN_LATE_DAYS_THRESHOLD = 15;
 
 export default function AdminUsersPage() {
-  const { user, isAdmin, loading: authLoading } = useAuth();
+  const { user, isAdmin } = useAuth();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -23,12 +23,7 @@ export default function AdminUsersPage() {
   const [filter, setFilter] = useState("all");       // all | active | banned | flagged
   const [banTarget, setBanTarget] = useState(null);  // user object to ban
   const [banReason, setBanReason] = useState("");
-
-  useEffect(() => { if (!authLoading && (!user || !isAdmin)) router.push("/"); }, [authLoading, user, isAdmin, router]);
   useEffect(() => { load(); }, []);
-
-  if (authLoading) return <div><div className="centerNotice">Loading...</div></div>;
-  if (!isAdmin) return null;
 
   async function load() {
     setLoaded(false);

@@ -2,7 +2,7 @@
 
 > A full-stack peer-to-peer rental marketplace built for university students — rent textbooks, electronics, and lab equipment from other students across multiple campus locations.
 
-**[Live Demo](https://your-vercel-url.vercel.app)** · **[Report Bug](https://github.com/your-username/rentify/issues)**
+**[Live Demo](https://rentify-one-gules.vercel.app)** · **[Report Bug](https://github.com/NikkyL49/Rentify/issues)**
 
 ---
 

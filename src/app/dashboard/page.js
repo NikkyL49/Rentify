@@ -9,7 +9,7 @@ import { AdminLayout } from "@/components/AdminLayout";
 
 
 export default function AdminDashboardPage() {
-  const { user, isAdmin, loading: authLoading } = useAuth();
+  const { user, isAdmin } = useAuth();
   const router = useRouter();
   const [stats, setStats] = useState({ totalItems: 0, activeRentals: 0, totalRevenue: 0, overdueRentals: 0, pendingReturns: 0, suspendedUsers: 0 });
   const [recent, setRecent] = useState([]);
@@ -37,13 +37,6 @@ export default function AdminDashboardPage() {
     }
     load();
   }, []);
-
-  useEffect(() => {
-    if (!authLoading && (!user || !isAdmin)) router.push("/");
-  }, [authLoading, user, isAdmin, router]);
-
-  if (authLoading) return <div className="centerNotice" style={{paddingTop:80}}>Loading...</div>;
-  if (!isAdmin) return null;
 
   function fmtPrice(v) { return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(v); }
   function fmtTime(s) { return new Date(s).toLocaleTimeString("en-CA", { hour: "2-digit", minute: "2-digit" }); }

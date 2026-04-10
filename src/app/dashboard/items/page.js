@@ -10,7 +10,7 @@ import { useAuth } from "@/context/AuthContext";
 
 
 export default function AdminItemsPage() {
-  const { user, isAdmin, loading: authLoading } = useAuth();
+  const { user, isAdmin } = useAuth();
   const router = useRouter();
   const [items, setItems] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -34,14 +34,10 @@ export default function AdminItemsPage() {
   }, [items, search, filterStatus, filterCategory]);
 
   useEffect(() => { load(); }, []);
-  useEffect(() => {
-    if (!authLoading && (!user || !isAdmin)) router.push("/");
-  }, [authLoading, user, isAdmin, router]);
 
   if (authLoading) return (
     <div className="centerNotice" style={{paddingTop:80}}>Loading...</div>
   );
-  if (!isAdmin) return null;
 
   async function load() {
     setLoaded(false);

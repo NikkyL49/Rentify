@@ -23,7 +23,7 @@ const EMPTY_RETURN = {
 };
 
 export default function AdminRentalsPage() {
-  const { user, isAdmin, loading: authLoading } = useAuth();
+  const { user, isAdmin } = useAuth();
   const router = useRouter();
   const [rentals, setRentals] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -33,12 +33,6 @@ export default function AdminRentalsPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => { load(); }, [statusFilter]);
-  useEffect(() => {
-    if (!authLoading && (!user || !isAdmin)) router.push("/");
-  }, [authLoading, user, isAdmin, router]);
-
-  if (authLoading) return <div className="centerNotice" style={{paddingTop:80}}>Loading...</div>;
-  if (!isAdmin) return null;
 
   async function load() {
     setLoaded(false);
